@@ -1,10 +1,15 @@
+import { useCart } from "@/Hooks/useCart";
+import { Iproduct } from "@/pages";
 import Image from "next/image";
 
-const Card = ({ product }: any) => {
+const Card = ({ product }: { product: Iproduct }) => {
+  const { addItem } = useCart();
+
   return (
     <div
       key={product.Id}
-      className="w-fit md:w-60 rounded-lg p-[10%] m-[5%%] md:m-[10%]"
+      className="w-fit cursor-pointer md:w-60 rounded-lg p-[10%] m-[5%%] md:m-[10%]"
+      onClick={() => addItem(product)}
     >
       <div>
         <Image
@@ -15,7 +20,9 @@ const Card = ({ product }: any) => {
         />
       </div>
       <div>{product.Name}</div>
-      <div className="text-blue-500">৳ {product.ProductPrice.Price}</div>
+      <div className="text-blue-500">
+        ৳ {product.ProductPrice.Price.toString()}
+      </div>
     </div>
   );
 };
