@@ -1,5 +1,5 @@
 import { useCart } from "@/Hooks/useCart";
-import { Iproduct } from "@/pages";
+import { Iproduct } from "@/pages/products";
 import Image from "next/image";
 
 const Card = ({ product }: { product: Iproduct }) => {
@@ -15,13 +15,13 @@ const Card = ({ product }: { product: Iproduct }) => {
         <Image
           width={200}
           height={100}
-          src={product.FeaturedImageUrl}
-          alt={product.Name}
+          src={product?.FeaturedImageUrl}
+          alt={product?.Name}
         />
       </div>
       <div>{product.Name}</div>
       <div className="text-blue-500">
-        ৳ {product.ProductPrice.Price.toString()}
+        ৳ {product?.ProductPrice?.Price.toString()}
       </div>
     </div>
   );

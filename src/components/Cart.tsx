@@ -32,7 +32,7 @@ const Cart = () => {
             </div>
           </div>
         ))}
-        <div className="flex justify-between font-semibold">
+        <div className="flex py-2 justify-between font-semibold">
           <div className="">Subtotal</div>
           <div>৳1096</div>
         </div>
