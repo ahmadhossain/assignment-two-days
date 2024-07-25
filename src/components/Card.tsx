@@ -4,7 +4,7 @@ const Card = ({ product }: any) => {
   return (
     <div
       key={product.Id}
-      className="w-fit  md:w-60 rounded-lg p-[10%]  m-[10%]"
+      className="w-fit md:w-60 rounded-lg p-[10%] m-[5%%] md:m-[10%]"
     >
       <div>
         <Image
