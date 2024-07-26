@@ -2,6 +2,7 @@ import { useRouter } from "next/router";
 
 import data from "@/data/product-list";
 import { Iproduct } from ".";
+import Image from "next/image";
 
 export async function getStaticPaths() {
   const paths = data.slice(0, 5).map((el) => ({
@@ -28,7 +29,29 @@ const productPage = ({ product }: { product: Iproduct }) => {
   if (router.isFallback) {
     return <div className="min-h-[calc(100vh-98px)]">Loading product...</div>;
   }
-  return <div className="min-h-[calc(100vh-98px)]">{product.Name}</div>;
+  return (
+    <div className="flex justify-center gap-10 py-20 min-h-[calc(100vh-54px)]">
+      <div>
+        <Image
+          width={300}
+          height={300}
+          src={product?.FeaturedImageUrl}
+          alt={product?.Name}
+        />
+      </div>
+      <div>
+        <div className="text-xl mb-3 font-semibold">{product.Name}</div>
+        <div className="flex font-semibold gap-2">
+          <div className="text-gray-400 text-lg line-through">
+            ৳{product.ProductPrice.OldPrice}
+          </div>
+          <div className="text-emerald-500 text-lg">
+            ৳{product.ProductPrice.Price}
+          </div>
+        </div>
+      </div>
+    </div>
+  );
 };
 
 export default productPage;

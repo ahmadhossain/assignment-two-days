@@ -10,7 +10,7 @@ export interface Iproduct {
   SeName: string;
   ColorVariants: string | null;
   ShortDescription: string | null;
-  ProductPrice: { OldPrice: Number; Price: Number };
+  ProductPrice: { OldPrice: number; Price: number };
   FeaturedImageUrl: string;
 }
 

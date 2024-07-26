@@ -8,21 +8,19 @@ const Card = ({ product }: { product: Iproduct }) => {
   return (
     <div
       key={product.Id}
-      className="w-fit cursor-pointer md:w-60 rounded-lg p-[10%] m-[5%%] md:m-[10%]"
+      className="w-fit cursor-pointer hover:shadow-md md:w-60 rounded-lg p-[5%] lg:p-[10%] m-[5%] md:m-[10%]"
       onClick={() => addItem(product)}
     >
       <div>
         <Image
           width={200}
-          height={100}
+          height={200}
           src={product?.FeaturedImageUrl}
           alt={product?.Name}
         />
       </div>
       <div>{product.Name}</div>
-      <div className="text-blue-500">
-        ৳ {product?.ProductPrice?.Price.toString()}
-      </div>
+      <div className="text-emerald-500">৳ {product?.ProductPrice?.Price}</div>
     </div>
   );
 };
