@@ -34,7 +34,10 @@ const Cart = () => {
           Shopping Bag
         </div>
         {cart.map((product) => (
-          <div className="lg:flex border-b gap-10 justify-between py-1">
+          <div
+            key={product.Id}
+            className="lg:flex border-b gap-10 justify-between py-1"
+          >
             <div className="lg:flex gap-3">
               <Image
                 width={80}

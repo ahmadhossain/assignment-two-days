@@ -23,7 +23,7 @@ export const getStaticProps = async (context: any) => {
 };
 
 // 657abe207c6b11d241add3c4
-const productPage = ({ product }: { product: Iproduct }) => {
+const ProductPage = ({ product }: { product: Iproduct }) => {
   const router = useRouter();
 
   if (router.isFallback) {
@@ -57,4 +57,4 @@ const productPage = ({ product }: { product: Iproduct }) => {
   );
 };
 
-export default productPage;
+export default ProductPage;
