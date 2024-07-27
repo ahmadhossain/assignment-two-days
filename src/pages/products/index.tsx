@@ -12,6 +12,8 @@ export interface Iproduct {
   ShortDescription: string | null;
   ProductPrice: { OldPrice: number; Price: number };
   FeaturedImageUrl: string;
+  AvailableQuantity: number;
+  count: number;
 }
 
 export const getServerSideProps = async () => {

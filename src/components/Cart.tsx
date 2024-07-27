@@ -6,7 +6,7 @@ import { useEffect } from "react";
 const countTotal = (cart: Iproduct[]) => {
   let sum = 0;
   cart.forEach((element) => {
-    sum += element.ProductPrice.Price;
+    sum += element.ProductPrice.Price * element.count;
   });
   return sum;
 };
@@ -36,7 +36,12 @@ const Cart = () => {
                 src={el.FeaturedImageUrl}
                 alt={el.Name}
               />
-              <div className="font-semibold text-sm">{el.Name}</div>
+              <div>
+                <div className="font-semibold text-sm">{el.Name}</div>
+                <div className="flex justify-items-center p-1 text-sm text-gray-600 font-medium">
+                  Qty: {el.count}
+                </div>
+              </div>
             </div>
             <div className="flex-col">
               <div className="font-semibold">৳{el.ProductPrice.Price}</div>

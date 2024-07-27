@@ -21,6 +21,7 @@ const Card = ({ product }: { product: Iproduct }) => {
       </div>
       <div>{product.Name}</div>
       <div className="text-emerald-500">৳ {product?.ProductPrice?.Price}</div>
+      <div className="text-sm">Qty: {product.AvailableQuantity}</div>
     </div>
   );
 };
