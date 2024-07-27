@@ -1,6 +1,7 @@
 import { useCart } from "@/Hooks/useCart";
 import { Iproduct } from "@/pages/products";
 import Image from "next/image";
+import { useEffect } from "react";
 
 const countTotal = (cart: Iproduct[]) => {
   let sum = 0;
@@ -11,7 +12,14 @@ const countTotal = (cart: Iproduct[]) => {
 };
 
 const Cart = () => {
-  const { cart, deleteItem } = useCart();
+  const { cart, addAll, deleteItem } = useCart();
+
+  useEffect(() => {
+    const cartData = localStorage.getItem("cart");
+    const cartObj = cartData ? JSON.parse(cartData) : [];
+
+    addAll(cartObj);
+  }, []);
 
   return (
     <>
