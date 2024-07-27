@@ -1,4 +1,5 @@
 import { useCart } from "@/Hooks/useCart";
+import { useProducts } from "@/Hooks/useProducts";
 import { Iproduct } from "@/pages/products";
 import Image from "next/image";
 import { useEffect } from "react";
@@ -13,7 +14,7 @@ const countTotal = (cart: Iproduct[]) => {
 
 const Cart = () => {
   const { cart, addAll, deleteItem } = useCart();
-
+  const { incProductQuantity } = useProducts();
   useEffect(() => {
     const cartData = localStorage.getItem("cart");
     const cartObj = cartData ? JSON.parse(cartData) : [];
@@ -21,32 +22,37 @@ const Cart = () => {
     addAll(cartObj);
   }, []);
 
+  const handleClick = (id: string, count: number) => {
+    deleteItem(id);
+    incProductQuantity(id, count);
+  };
+
   return (
     <>
       <div className="border-l p-3 lg:p-6 w-[25%]">
         <div className="font-semibold text-base lg:text-xl pb-3">
           Shopping Bag
         </div>
-        {cart.map((el) => (
+        {cart.map((product) => (
           <div className="lg:flex border-b gap-10 justify-between py-1">
             <div className="lg:flex gap-3">
               <Image
                 width={80}
                 height={80}
-                src={el.FeaturedImageUrl}
-                alt={el.Name}
+                src={product.FeaturedImageUrl}
+                alt={product.Name}
               />
               <div>
-                <div className="font-semibold text-sm">{el.Name}</div>
+                <div className="font-semibold text-sm">{product.Name}</div>
                 <div className="flex justify-items-center p-1 text-sm text-gray-600 font-medium">
-                  Qty: {el.count}
+                  Qty: {product.count}
                 </div>
               </div>
             </div>
             <div className="flex-col">
-              <div className="font-semibold">৳{el.ProductPrice.Price}</div>
+              <div className="font-semibold">৳{product.ProductPrice.Price}</div>
               <button
-                onClick={() => deleteItem(el.Id)}
+                onClick={() => handleClick(product.Id, product.count)}
                 className="text-xs underline"
               >
                 Remove

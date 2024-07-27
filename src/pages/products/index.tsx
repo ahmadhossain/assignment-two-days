@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Card from "@/components/Card";
 import Cart from "@/components/Cart";
 import data from "@/data/product-list";
+import { useProducts } from "@/Hooks/useProducts";
 
 export interface Iproduct {
   Id: string;
@@ -20,25 +21,26 @@ export const getServerSideProps = async () => {
   return { props: { data } };
 };
 
-export default function Home({ data }: { data: Iproduct[] }) {
-  const [products, setProducts] = useState<Iproduct[]>([]);
+export default function ProductListPage({ data }: { data: Iproduct[] }) {
+  // const [products, setProducts] = useState<Iproduct[]>([]);
+  const { products, addAllProduct } = useProducts();
   const [search, setSearch] = useState("");
   const [showSearchText, setShowSearchText] = useState(false);
 
   useEffect(() => {
-    setProducts(data);
+    addAllProduct(data);
   }, [data]);
 
   const handleChange = (e: any) => {
     setSearch(e.target.value);
     setShowSearchText(false);
-    setProducts(data);
+    addAllProduct(data);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
     setShowSearchText(true);
-    setProducts(
+    addAllProduct(
       products.filter((obj) =>
         obj.Name.toLowerCase().includes(search.toLowerCase())
       )
@@ -48,7 +50,7 @@ export default function Home({ data }: { data: Iproduct[] }) {
   const handleClearSearch = () => {
     setShowSearchText(false);
     setSearch("");
-    setProducts(data);
+    addAllProduct(data);
   };
 
   return (

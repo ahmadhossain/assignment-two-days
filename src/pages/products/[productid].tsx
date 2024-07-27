@@ -49,6 +49,9 @@ const productPage = ({ product }: { product: Iproduct }) => {
             ৳{product.ProductPrice.Price}
           </div>
         </div>
+        <div className="text-base py-2">
+          Available Quantity: {product.AvailableQuantity}
+        </div>
       </div>
     </div>
   );
