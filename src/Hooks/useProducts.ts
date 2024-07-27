@@ -17,12 +17,15 @@ export const useProducts = create<ICart>()((set, get) => ({
     const temp = get().products;
     const indx = temp.findIndex((el) => el.Id === id);
     temp[indx].AvailableQuantity += count;
+
     set((state) => ({ products: temp }));
   },
 
   decProductQuantity: (id: string) => {
     const temp = get().products;
     const indx = temp.findIndex((el) => el.Id === id);
+
+    if (temp[indx].AvailableQuantity === 0) return;
     temp[indx].AvailableQuantity--;
     set((state) => ({ products: temp }));
   },

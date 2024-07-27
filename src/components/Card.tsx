@@ -7,7 +7,10 @@ const Card = ({ product }: { product: Iproduct }) => {
   const { addItem } = useCart();
   const { decProductQuantity } = useProducts();
 
+  const isAvailable = product.AvailableQuantity !== 0;
+
   const handleClick = (product: Iproduct) => {
+    if (!isAvailable) return;
     addItem(product);
     decProductQuantity(product.Id);
   };
@@ -26,9 +29,17 @@ const Card = ({ product }: { product: Iproduct }) => {
           alt={product?.Name}
         />
       </div>
-      <div className="text-sm">{product.Name}</div>
-      <div className="text-sm">Available Qty: {product.AvailableQuantity}</div>
-      <div className="text-emerald-500 font-semibold">
+      <div className={`text-sm ${!isAvailable && "text-gray-400"}`}>
+        {product.Name}
+      </div>
+      <div className={`text-sm ${!isAvailable && "text-red-300"}`}>
+        Available Qty: {product.AvailableQuantity}
+      </div>
+      <div
+        className={`text-emerald-500 font-semibold ${
+          !isAvailable && "text-gray-400"
+        }`}
+      >
         ৳ {product?.ProductPrice?.Price}
       </div>
     </div>

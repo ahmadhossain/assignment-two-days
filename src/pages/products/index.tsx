@@ -22,8 +22,8 @@ export const getServerSideProps = async () => {
 };
 
 export default function ProductListPage({ data }: { data: Iproduct[] }) {
-  // const [products, setProducts] = useState<Iproduct[]>([]);
   const { products, addAllProduct } = useProducts();
+
   const [search, setSearch] = useState("");
   const [showSearchText, setShowSearchText] = useState(false);
 
