@@ -21,7 +21,7 @@ export const getServerSideProps = async () => {
 export default function Home({ data }: { data: Iproduct[] }) {
   const [products, setProducts] = useState<Iproduct[]>([]);
   const [search, setSearch] = useState("");
-  const [show, setShow] = useState(false);
+  const [showSearchText, setShowSearchText] = useState(false);
 
   useEffect(() => {
     setProducts(data);
@@ -29,22 +29,22 @@ export default function Home({ data }: { data: Iproduct[] }) {
 
   const handleChange = (e: any) => {
     setSearch(e.target.value);
-    setShow(false);
+    setShowSearchText(false);
+    setProducts(data);
   };
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-
-    setShow(true);
+    setShowSearchText(true);
     setProducts(
       products.filter((obj) =>
-        Object.keys(obj).some((key) => obj["Name"].includes(search))
+        obj.Name.toLowerCase().includes(search.toLowerCase())
       )
     );
   };
 
   const handleClearSearch = () => {
-    setShow(false);
+    setShowSearchText(false);
     setSearch("");
     setProducts(data);
   };
@@ -62,7 +62,7 @@ export default function Home({ data }: { data: Iproduct[] }) {
             />
           </form>
         </div>
-        {show && (
+        {showSearchText && (
           <div className="flex justify-center gap-2 py-3">
             <div className=" text-xl font-semibold">
               Search results for: {search}
@@ -76,7 +76,7 @@ export default function Home({ data }: { data: Iproduct[] }) {
           </div>
         )}
         <div className="min-h-[calc(100vh-98px)] text-center">
-          {products.length === 0 && show ? (
+          {products.length === 0 && showSearchText ? (
             <div className="text-lg font-semibold py-5">
               Sorry, no search results found.
             </div>
