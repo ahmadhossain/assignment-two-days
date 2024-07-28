@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 
 import data from "@/data/product-list";
-import { Iproduct } from ".";
 import Image from "next/image";
+import { Iproduct } from "@/components/model/product";
 
 export async function getStaticPaths() {
   const paths = data.slice(0, 5).map((el) => ({
