@@ -4,18 +4,7 @@ import Card from "@/components/Card";
 import Cart from "@/components/Cart";
 import data from "@/data/product-list";
 import { useProducts } from "@/Hooks/useProducts";
-
-export interface Iproduct {
-  Id: string;
-  Name: string;
-  SeName: string;
-  ColorVariants: string | null;
-  ShortDescription: string | null;
-  ProductPrice: { OldPrice: number; Price: number };
-  FeaturedImageUrl: string;
-  AvailableQuantity: number;
-  count: number;
-}
+import { Iproduct } from "@/components/model/product";
 
 export const getServerSideProps = async () => {
   return { props: { data } };

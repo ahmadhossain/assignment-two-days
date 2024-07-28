@@ -1,8 +1,8 @@
 import { useCart } from "@/Hooks/useCart";
 import { useProducts } from "@/Hooks/useProducts";
-import { Iproduct } from "@/pages/products";
 import Image from "next/image";
 import { useEffect } from "react";
+import { Iproduct } from "./model/product";
 
 const countTotal = (cart: Iproduct[]) => {
   let sum = 0;

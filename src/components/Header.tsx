@@ -1,6 +1,6 @@
 import Image from "next/image";
 
-import cardImg from "../../public/cart.png";
+import cardImg from "../../src/components/assets/cart.png";
 import { useCart } from "@/Hooks/useCart";
 
 const Header = () => {

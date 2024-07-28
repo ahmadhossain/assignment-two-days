@@ -1,7 +1,7 @@
 import { useCart } from "@/Hooks/useCart";
 import { useProducts } from "@/Hooks/useProducts";
-import { Iproduct } from "@/pages/products";
 import Image from "next/image";
+import { Iproduct } from "./model/product";
 
 const Card = ({ product }: { product: Iproduct }) => {
   const { addItem } = useCart();
